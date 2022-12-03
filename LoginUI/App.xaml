@@ -1,0 +1,16 @@
+﻿<Application x:Class="LoginUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LoginUI"
+             Startup="ApplicationStart">
+            <!--
+            StartupUri="MainWindow.xaml"> 
+            원래 이건데, Login 처럼 메인 Window 이전에 실행시켜야 할 윈도가 있으면
+            따로 App code behind 에서 함수를 선언하여 시작시키도록 한다.
+            함수를 실행시킬 때 : Startup
+            xaml 을 실행시킬 때 : StartupUri
+            -->
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

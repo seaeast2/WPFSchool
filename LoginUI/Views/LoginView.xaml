@@ -1,0 +1,187 @@
+﻿<Window x:Class="LoginUI.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginUI.Views"
+        xmlns:vm="clr-namespace:LoginUI.ViewModels"
+        xmlns:cc="clr-namespace:LoginUI.CustomControls"
+        mc:Ignorable="d"
+        Title="LoginView" Height="550" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+    <Window.DataContext>
+        <vm:LoginViewModel/>
+    </Window.DataContext>
+    
+    <Border CornerRadius="12">
+        <Border.Background>
+            <!--배경 그림 설정하는 법-->
+            <!--Background 에 이미지를 출력 할 때는 ImageBrush 가 필요하다.-->
+            <ImageBrush ImageSource="/Images/back-image.jpg" Stretch="None"/>
+        </Border.Background>
+
+        <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
+            <Border.BorderBrush>
+                <!--그라데이션 넣기-->
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <!--전체 레이아웃은 상단 Header bar와 하단 Body 부분으로 구성-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!--상단 헤더 부분 정의-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="LOG IN" Foreground="DarkGray" FontSize="10" FontFamily="Montserrat" 
+                               Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    
+                    <Button x:Name="btnMinimize" BorderThickness="0" Content="-" Foreground="White" FontSize="16" 
+                            FontFamily="Montserrat" Cursor="Hand" Grid.Column="1" Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <!--버튼에는 CornerRadius Property가 없다. 따라서 둥근 버튼을 만들기 위해서는 
+                        버튼의 ControlTemplate을 조작해야 한다.-->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">   
+                                <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnClose" BorderThickness="0" Click="btnClose_Click" Content="X" 
+                            Cursor="Hand" Foreground="White" FontSize="12" FontFamily="Montserrat" Grid.Column="2">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!--하단 Body 부분 정의-->
+                <StackPanel Grid.Row="1" Width="220" Orientation="Vertical" Margin="0 30 0 0">
+                    <!--Background 가 아닌 단순 이미지 출력은 Image 객체로 한다.-->
+                    <!--폴더 앞에 '/'가 있고 없고 차이에 따라 절대주소, 상대주소가 결정된다.--> 
+                    <Image Source="/Images/logo.png" Width="100" Height="100"/>
+
+                    <TextBlock Text="자동매매" Foreground="White" FontSize="25" FontWeight="Medium" 
+                               FontFamily="Montserrat" HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="자동매매 프로그램으로 돈을 벌어 봅시다. 존버 가즈아~~~"
+                               Foreground="LightGray" FontSize="12" FontWeight="Medium" 
+                               FontFamily="Montserrat" TextWrapping="Wrap" TextAlignment="Center" Margin="0 5 0 0"/>
+
+                    <TextBlock Text="사용자" Foreground="DarkGray" FontSize="12" FontWeight="Medium" 
+                               FontFamily="Montserrat" Margin="0 35 0 0"/>
+                    <!--UpdateSourceTrigger가 PropertyChanged로 설정되면 
+                    바인딩 대상의 속성이 변경될 때마다 바인딩 소스를 즉시 업데이트합니다.-->
+                    <TextBox x:Name="txtUser"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="13" FontWeight="Medium" FontFamily="Montserrat" Foreground="White"
+                             CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0 0 0 2"
+                             Height="28" VerticalContentAlignment="Center" Margin="0 5 0 0" Padding="20 0 0 0">
+
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Images/user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="비밀번호" Foreground="DarkGray" FontSize="12" FontWeight="Medium"
+                               FontFamily="Montserrat" Margin="0 15 0 0"/>
+                    <!--키가 입력될 때마다 연결된 Password 도 갱신 되도록 설정-->
+                    <!--BindablePasswordBox.Password 와 LoginViewModel.Password 두개의 Property 사이에서 
+                    데이터 교환이 일어난다.-->
+                    <cc:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Height="28" Margin="0 5 0 0"/>
+
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="#D7596D" FontSize="12" FontWeight="Medium"
+                               FontFamily="Montserrat" Margin="0,10,0,0" TextWrapping="Wrap"/>
+
+                    <Button x:Name="btnLogin" Command="{Binding LoginCommand}" BorderThickness="0" Content="LOG IN"
+                            Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand" Margin="0,30,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40" CornerRadius="20" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <TextBlock Text="Forgot Password?" Foreground="DarkGray" FontSize="12" FontWeight="Medium" FontFamily="Montserrat"/>
+                        <TextBlock Text="Reset" Foreground="White" FontSize="12" FontWeight="Medium" FontFamily="Montserrat" Cursor="Hand" Margin="8,0,0,0">
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding ResetCommand}" MouseAction="LeftClick"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            
+        </Border>
+    </Border>
+</Window>
