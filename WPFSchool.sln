@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashboard_Flat_DataGrid", "Dashboard_Flat_DataGrid\Dashboard_Flat_DataGrid.csproj", "{E2F2BD75-24C7-4336-A199-FB0807C8BAD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginUI", "LoginUI\LoginUI.csproj", "{5CFE821F-DBF6-44B7-9BF3-D3F2390F57EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginUI", "LoginUI\LoginUI.csproj", "{5CFE821F-DBF6-44B7-9BF3-D3F2390F57EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard_Graph", "Dashboard_Graph\Dashboard_Graph.csproj", "{F384E8DF-503D-4074-AB5C-ED1DF4747DB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5CFE821F-DBF6-44B7-9BF3-D3F2390F57EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CFE821F-DBF6-44B7-9BF3-D3F2390F57EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CFE821F-DBF6-44B7-9BF3-D3F2390F57EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F384E8DF-503D-4074-AB5C-ED1DF4747DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F384E8DF-503D-4074-AB5C-ED1DF4747DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F384E8DF-503D-4074-AB5C-ED1DF4747DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F384E8DF-503D-4074-AB5C-ED1DF4747DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
